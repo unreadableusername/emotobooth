@@ -1,6 +1,8 @@
 site/out-debug/old/less-old/
 site/build/index.js
 site/build/grid.js
+site/build/main.js
+site/build/main.js.map
 site/testImage.jpg
 node_modules
 site/config.js

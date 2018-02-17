@@ -103,7 +103,7 @@ var queue = kue.createQueue({
 });
 
 // Redis
-var client = redisPromises.createClient(config.redis.host, config.redis.port);
+var client = redisPromises.createClient(config.redis.port, config.redis.host);
 client.hkeys("image-data", function (err, replies) {
   replies.forEach(function (reply, i) {
     // delete all historical images
@@ -900,7 +900,7 @@ io.on('connection', function(socket) {
 
   logger.debug('New socket connection');
   // Pass on redis pubsub events re: new images
-  var client = redis.createClient(config.redis.host, config.redis.port);
+  var client = redis.createClient(config.redis.port, config.redis.host);
   client.subscribe('new_image');
 
   client.on('message', (channel, message) => {
