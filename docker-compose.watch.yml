@@ -1,8 +1,10 @@
 version: "3"
 services:
   emotobooth:
-    image: emotobooth:latest
-    build: ./site
+    image: emotobooth-watch:latest
+    build:
+      context: ./site
+      dockerfile: ./docker/Dockerfile-watch
     command: npm run watch
     ports:
       - 8080:8080
