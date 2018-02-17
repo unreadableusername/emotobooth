@@ -95,10 +95,15 @@ checkDirs.forEach((dir) => {
 // })
 
 // Create job queue
-var queue = kue.createQueue();
+var queue = kue.createQueue({
+  redis: {
+    host: config.redis.host,
+    port: config.redis.port,
+  },
+});
 
 // Redis
-var client = redisPromises.createClient();
+var client = redisPromises.createClient(config.redis.port, config.redis.host);
 client.hkeys("image-data", function (err, replies) {
   replies.forEach(function (reply, i) {
     // delete all historical images
@@ -895,7 +900,7 @@ io.on('connection', function(socket) {
 
   logger.debug('New socket connection');
   // Pass on redis pubsub events re: new images
-  var client = redis.createClient();
+  var client = redis.createClient(config.redis.port, config.redis.host);
   client.subscribe('new_image');
 
   client.on('message', (channel, message) => {

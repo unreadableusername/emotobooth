@@ -1,0 +1,27 @@
+version: "3"
+services:
+  emotobooth:
+    image: emotobooth:latest
+    build: ./site
+    command: npm run watch
+    ports:
+      - 8080:8080
+      - 8081:8081
+      - 8082:8082
+      - 9229:9229
+    volumes:
+      - "./site:/usr/app"
+      - /usr/app/node_modules
+      - "${PWD}/data/config.js:/usr/app/config.js"
+      # - "${PWD}/data/credentials.json:/usr/src/app/site/credentials.json"
+      - "${PWD}/data/in:/usr/app/in"
+      - "${PWD}/data/out:/usr/app/out"
+      - "${PWD}/data/out-print:/usr/app/out-print"
+      - "${PWD}/data/out-photostrips:/usr/app/out-photostrips"
+    links:
+      - "redis:redis"
+
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
