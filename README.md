@@ -11,9 +11,8 @@ Check out the [full Twitter feed](https://twitter.com/gcpemotobooth)!
 The `/in` directory watches for images being added; when the machine receives the "end session" signal, it scores the new set of images based on their results from the Cloud Vision API's Sentiment Analysis. The highest-scoring are sent to the frontend; all are processed on the backend.
 
 ## Config and Credentials
-
+1. Go to `data` folder
 1. Duplicate the `config.js.example` file and rename it `config.js`.
-1. Configure your ports and folder (these are relative to the `site` directory).
 1. Create those folders in the project (for example, `in/' and 'out/').
 1. Put your [API Key](https://console.cloud.google.com/apis/credentials) for the Cloud Vision API.
 
