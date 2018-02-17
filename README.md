@@ -24,30 +24,14 @@ The `/in` directory watches for images being added; when the machine receives th
 
 ## Installation
 
-* [Install Vagrant.](https://www.vagrantup.com/downloads.html)
-* Set up the Vagrant VM.
+* [Install Docker](https://docs.docker.com/install/)
+* Build container
 ```
-cd deploy; vagrant up
+docker-compose build
 ```
-* Provision the VM
+* Run container
 ```
-vagrant provision
-```
-* **SKIP IF NOT ON WINDOWS** If you are on Windows and you plan to share socially, run these commands once for installation
-```
-vagrant ssh
-cd /vagrant/site
-npm uninstall phantomjs-prebuilt
-npm install phantomjs-prebuilt --no-bin-links
-node server.js
-```
-* Start the server
-```
-vagrant ssh
-cd /vagrant/site
-npm uninstall phantomjs-prebuilt
-npm install phantomjs-prebuilt --no-bin-links
-node server.js
+docker-compose up
 ```
 * Load the [panel](http://localhost:8080) and [grid](http://localhost:8080?showgrid) front end pages (as seen above)
 

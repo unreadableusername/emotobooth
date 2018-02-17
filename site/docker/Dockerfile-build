@@ -1,0 +1,9 @@
+FROM node:6
+
+RUN mkdir -p /usr/app
+WORKDIR /usr/app
+
+COPY . /usr/app
+COPY package.json /usr/app
+RUN npm install
+RUN npm run build
